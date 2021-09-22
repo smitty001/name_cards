@@ -30,9 +30,9 @@ if len(sys.argv) == 2:
     font_size = int(sys.argv[1])
 
 # Read in the CSV
-def get_file():
+def get_file(file):
     names = []
-    with open('names.csv') as csvfile:
+    with open(file) as csvfile:
         reader = csv.reader(csvfile, delimiter='\n')
         for row in reader:
             names.append(row)
@@ -55,8 +55,9 @@ def setCan(canvas):
     canvas.setLineWidth(.02)
 
 
-def generate_pdf(names):
-    can = canvas.Canvas('TEST.pdf', bottomup = False)
+def generate_pdf(uploaded_file):
+    names = get_file(uploaded_file)
+    can = canvas.Canvas('cards.pdf', bottomup = False)
     pdfmetrics.registerFont(TTFont('Ace', 'ace.ttf'))
     setCan(can)
     PAGE_WIDTH  = defaultPageSize[0]
@@ -122,8 +123,3 @@ def generate_pdf(names):
 
     can.save()
 
-def main():
-    names = get_file()
-    generate_pdf(names)
-
-main()
