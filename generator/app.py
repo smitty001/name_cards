@@ -20,4 +20,4 @@ def downloadFile ():
     path = "cards.pdf"
     return send_file(path, as_attachment=True)
 
-app.run()
+app.run(host='0.0.0.0')

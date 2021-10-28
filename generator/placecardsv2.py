@@ -1,12 +1,6 @@
 from typing import Counter
 import sys
-from reportlab.lib.pagesizes import A4
-from reportlab.lib.styles import getSampleStyleSheet
-from reportlab.lib.units import mm
 from reportlab.pdfgen import canvas
-from reportlab.platypus import Image, Paragraph, Table
-from reportlab.lib import colors
-from reportlab.pdfbase.pdfmetrics import stringWidth
 from reportlab.rl_config import defaultPageSize
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
@@ -52,7 +46,7 @@ def return_array(num, div):
 
 def setCan(canvas):
     canvas.setFont(font, font_size)
-    canvas.setLineWidth(.02)
+    canvas.setLineWidth(.0002)
 
 
 def generate_pdf(uploaded_file):
@@ -84,10 +78,10 @@ def generate_pdf(uploaded_file):
                 # vertical lines
                 # can.line(lines_h, 0, lines_h, PAGE_HEIGHT)
 
-    drawLine(can)
 
     x_counter = 0
     y_counter = 0
+    drawLine(can)
 
     # Print Content
     for text in names:
@@ -120,6 +114,6 @@ def generate_pdf(uploaded_file):
             can.restoreState()
         x_counter = x_counter + 1
 
-
+    # Add a page of lines, then save
     can.save()
 
